@@ -1,0 +1,26 @@
+{
+  "name": "billionairemap",
+  "version": "1.0.0",
+  "description": "A map that shows where the billionaires in the world have made their fortunes.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/index.js",
+    "server": "nodemon backend/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "billionaireMap"
+  },
+  "author": "Matthew Bernhardt",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
