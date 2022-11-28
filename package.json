@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node backend/index.js",
     "server": "nodemon backend/index",
-    "client": "npm start  --prefix frontend",
+    "client": "npm start --prefix frontend/billionaire-map",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
@@ -16,6 +16,8 @@
   "author": "Matthew Bernhardt",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
+    "axios-rate-limit": "^1.3.0",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "concurrently": "^7.3.0",
@@ -23,7 +25,10 @@
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.4.6"
+    "mongoose": "^6.4.6",
+    "react-geocode": "^0.2.3",
+    "redux": "^4.2.0",
+    "utf8": "^3.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"

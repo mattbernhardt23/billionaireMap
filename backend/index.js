@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/users', require('./routes/userRoutes') )
+app.use('/api/billionaires', require('./routes/billionaireRoutes') )
 app.use(errorHandler)
 
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`))

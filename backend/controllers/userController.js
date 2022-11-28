@@ -42,7 +42,7 @@ const registerUser = asyncHandler(async (req, res) => {
         password: hashedPassword,
     })
 
-    // If Creation of User was Successul
+    // If Creation of User was Succesful
     if(user) {
         res.status(201).json({
             _id: user._id,
