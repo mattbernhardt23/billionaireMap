@@ -1,2 +1,1 @@
-# UpdatedBillionaireMap
-# UpdatedBillionaireMap
+# billionaire-map
