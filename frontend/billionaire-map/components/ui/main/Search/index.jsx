@@ -36,7 +36,7 @@ export default function Search() {
             <div className='flex'>
                 <div className="w-full">
                     <Select 
-                        className=" border-gray-500 border-2 rounded-md shadow-inner"
+                        className=" border-gray-500 border-2 border-b-4 border-r-0 rounded-l-md shadow-inner shadow-gray-500"
                         classNames={{
                             control: (state) =>
                               state.isFocused ? 'border-red-600' : 'border-grey-300',
@@ -44,11 +44,13 @@ export default function Search() {
                         options={countryDropDown}
                         // onChange={handleChangeCountry}
                         placeholder="United States"
+                        instanceId={"whatupbra"}
                     />
                 </div>
                 <div>
                     <Button
-                        variant="lightGray"
+                        variant="searchLightGray"
+
                     >
                         Search
                     </Button>

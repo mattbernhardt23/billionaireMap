@@ -1,9 +1,10 @@
 import {useState, useEffect} from 'react'
 import {toast} from 'react-toastify'
 import {useSelector, useDispatch } from 'react-redux'
-import {login} from '@features/auth/authService'
+import { login } from '@features/auth/authSlice'
 import { Button } from "@components/ui/common"
 import { useRouter } from 'next/router'
+import { reset } from '@features/auth/authSlice'
 
 
 export default function Login () {
@@ -27,7 +28,7 @@ export default function Login () {
         }
 
         if(isSuccess || user){
-            router.push('/')
+            // router.push('/')
         }
 
         dispatch(reset())
@@ -40,16 +41,17 @@ export default function Login () {
         }))
     }
 
-    const onSubmit =(e) => {
+    const onClick =(e) => {
         e.preventDefault()
 
+        console.log("handling the submit")
         const userData = {
             email,
             password
         }
-
+        
         dispatch(login(userData))
-
+        router.push('/')
     }
 
     // if (isLoading) {
@@ -99,7 +101,7 @@ export default function Login () {
                 <div className="flex justify-center mb-8">
                     <Button
                         variant="lightGray"
-                        onSubmit={onSubmit}
+                        onClick={onClick}
                     >
                         Submit
                     </Button>

@@ -15,6 +15,7 @@ export default function Navbar() {
             <div className="flex flex-row justify-between sticky w-full border-b-4 border-gray-500 ">
               <div className="flex flex-row items-center">
                 <Link href='/' legacyBehavior>
+                  <a>
                 <Button 
                   className="font-large"
                   variant="gray"
@@ -23,8 +24,10 @@ export default function Navbar() {
                 >
                   Home
                 </Button>
+                </a>
                 </Link>
                 <Link href='/about' legacyBehavior>
+                  <a>
                 <Button 
                   className="font-large mx-2"
                   variant="gray"
@@ -32,14 +35,17 @@ export default function Navbar() {
                 >
                   About
                 </Button>
+                </a>
                 </Link>
-              </div>
+                </div>
               <div className="w-1/3">
                 <div className="mr-4 mb-4 hidden sm:flex">
                   <Image
                     src="/logo.png"
                     width="500"
                     height="500"
+                    alt="logo"
+                    priority
                   />
                 </div>
               </div>

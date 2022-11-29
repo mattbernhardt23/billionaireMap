@@ -1,7 +1,7 @@
 
 import Link from "next/link"
 import {useDispatch, useSelector} from 'react-redux'
-import {logout, reset} from '@features/auth/authService'
+import {logout, reset} from '@features/auth/authSlice'
 import { Button } from '@components/ui/common'
 import { useRouter } from "next/router"
 
@@ -14,7 +14,6 @@ export default function User () {
     const onLogout = () => {
         dispatch(logout())
         dispatch(reset())
-        router.push('/')
     }
 
     return (
@@ -23,6 +22,7 @@ export default function User () {
                 {user ? (
                     <div>
                         <Button 
+                            variant="lightGray"
                             onClick={onLogout}
                         >
                             Sign Out
@@ -32,20 +32,24 @@ export default function User () {
                 <>
                 <div >
                     <Link href='/login' legacyBehavior>
+                        <a>
                         <Button
                             variant='gray'
                         >
                             Sign In  
                         </Button>
+                        </a>
                     </Link>
                 </div>
                 <div>
                     <Link href='/register' legacyBehavior>
+                        <a>
                         <Button
                             variant='gray'
                         >
                            Register 
                         </Button>
+                        </a>
                     </Link>
                 </div>
                 </>
