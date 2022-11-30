@@ -3,10 +3,10 @@ const dummyData = require('./data/dummyData')
 const {getBillionairesByCountry, getAllBillionaires, getBillionairesByCountryPage1} = require('./funcs/getBillionaires')
 const {getLocationForAll} = require('./funcs/getLocation')
 const connectDB = require('./funcs/connectMongo')
-const { db, collection } = require('../models/billionaireModel');
+const { db, collection } = require('./models/billionaireModel');
 const e = require('express');
 
-
+ 
 // Connect Database
 connectDB();
 
