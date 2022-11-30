@@ -1,0 +1,82 @@
+[
+    {
+        "_id": {
+          "$oid": "62d869acc3ecf52a53361f1c"
+        },
+        "name": "Harold",
+        "email": "bigdog26@runallday.com",
+        "password": "carrots",
+        "isAdmin": false,
+        "createdAt": {
+          "$date": {
+            "$numberLong": "1658351788115"
+          }
+        },
+        "updatedAt": {
+          "$date": {
+            "$numberLong": "1658351788115"
+          }
+        },
+        "__v": 0
+      },
+      {
+        "_id": {
+          "$oid": "62d8715b070c55879552028d"
+        },
+        "name": "Harold",
+        "email": "bigdog29@runallday.com",
+        "password": "rabbits",
+        "isAdmin": false,
+        "createdAt": {
+          "$date": {
+            "$numberLong": "1658351963525"
+          }
+        },
+        "updatedAt": {
+          "$date": {
+            "$numberLong": "1658351963525"
+          }
+        },
+        "__v": 0
+      },
+      {
+        "_id": {
+          "$oid": "62d8715b070c84879552028d"
+        },
+        "name": "Harold",
+        "email": "bigdog29@runallday.com",
+        "password": "bananas",
+        "isAdmin": false,
+        "createdAt": {
+          "$date": {
+            "$numberLong": "1658351963525"
+          }
+        },
+        "updatedAt": {
+          "$date": {
+            "$numberLong": "1658351963525"
+          }
+        },
+        "__v": 0
+      },
+      {
+        "_id": {
+          "$oid": "62d8715b070c45879552028d"
+        },
+        "name": "Harold",
+        "email": "bigdog29@runallday.com",
+        "password": "apples",
+        "isAdmin": false,
+        "createdAt": {
+          "$date": {
+            "$numberLong": "1658351963525"
+          }
+        },
+        "updatedAt": {
+          "$date": {
+            "$numberLong": "1658351963525"
+          }
+        },
+        "__v": 0
+      }
+]
