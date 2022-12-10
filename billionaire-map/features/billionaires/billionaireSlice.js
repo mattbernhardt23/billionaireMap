@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 // import countryCoordinates from '@utils/countryCoordinates'
 import billionaireService from './billionaireService'
 import { extractErrorMessage } from '@utils/extractErrorMessage'
-
+ 
 
 export const setStateCountry = createAsyncThunk('country/set', async (place, thunkAPI) => {
   try {
@@ -22,6 +22,14 @@ async (country, thunkAPI) => {
   }
 })
 
+export const getBillionaire = createAsyncThunk("billionaire/set", async (billionaire, thunkAPI) => {
+  try {
+    return await billionaireService.getBillionaire(billionaire)
+  } catch (e) {
+    return thunkAPI.rejectWithValue(extractErrorMessage(e))
+  }
+}) 
+
 const initialState = {
   country: {
     country: 'United States',
@@ -31,8 +39,8 @@ const initialState = {
     },
     zoom: 3
   },
+  billionaire: null,
   billionaires: [],
-  billionaire: {},
   isLoading: false,
   isError: false,
   message: '',
@@ -65,6 +73,17 @@ const billionaireDataSlice = createSlice({
         state.isLoading = true
       })
       .addCase(setStateCountry.rejected, (state, action) => {
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(getBillionaire.fulfilled, (state, action) => {
+        state.billionaire = action.payload
+        state.isLoading = false
+      })
+      .addCase(getBillionaire.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getBillionaire.rejected, (state, action) => {
         state.isError = true
         state.message = action.payload
       })

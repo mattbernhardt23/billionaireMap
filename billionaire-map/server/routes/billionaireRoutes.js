@@ -1,15 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const {
-    getBillionaires
-} = require('../controllers/billionaireController')
-
-const { protect } = require('../middleware/authMiddleware')
+const { getBillionaires } = require('../controllers/billionaireController')
 
 
-// If we decide to protect routes
-//router.route('/').get(protect, getBillionaires)
+router.get('/', getBillionaires)
 
-router.route('/').get(getBillionaires)
-
-module.exports = router
+module.exports = router  

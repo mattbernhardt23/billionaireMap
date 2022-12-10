@@ -1,8 +1,9 @@
 import axios from "axios";
 import countryCoordinates from "@utils/countryCoordinates";
 
+// const API_URL = '/api/billionaires/'
 const API_URL = '/api/billionaires'
-
+ 
 // Get Billionaires By Country
 const getBillionaires = async (country) => {
     const options = {
@@ -20,9 +21,14 @@ const setCountry = (place) => {
     return result
 }
 
+const getBillionaire = (billionaire) => {
+    return billionaire
+}
+
 const billionaireService = {
     getBillionaires,
-    setCountry
+    setCountry,
+    getBillionaire
 }
 
 export default billionaireService

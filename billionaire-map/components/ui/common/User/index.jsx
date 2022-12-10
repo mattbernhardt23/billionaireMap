@@ -1,9 +1,11 @@
 
 import Link from "next/link"
 import {useDispatch, useSelector} from 'react-redux'
-import {logout, reset} from '@features/auth/authSlice'
+import {logout, getUser, reset} from '@features/auth/authSlice'
 import { Button } from '@components/ui/common'
 import { useRouter } from "next/router"
+import { useEffect } from 'react'
+
 
 
 export default function User () {
@@ -11,9 +13,16 @@ export default function User () {
     const dispatch = useDispatch()
     const {user} = useSelector((state) => state.auth)
 
+    const callDispatch= (() => dispatch(getUser()))
+  
+
+    useEffect(() => {
+        callDispatch()
+    }, [])
+
     const onLogout = () => {
-        dispatch(logout())
         dispatch(reset())
+        dispatch(logout())
     }
 
     return (

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const billionaireSchema = mongoose.Schema({
         country: String,
@@ -19,6 +20,12 @@ const billionaireSchema = mongoose.Schema({
             lat: Number,
             lng: Number
         },
+        comments: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Comment"
+            }
+        ]
 },
 {
     timestamps: true,

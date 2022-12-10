@@ -1,38 +1,40 @@
 import { Button } from '@components/ui/common'
 import { countryDropDown } from "@utils/countryDropDown"
+import { useDispatch, useSelector } from 'react-redux'
+import { searchBillionairesByCountry } from '@features/billionaires/billionaireSlice'
 import { useState, useEffect } from 'react'
 import Select from 'react-select'
 
+
 export default function Search() {
-    // const [country, setCountry] = useState(countryDropDown[0].value)
+    const [country, setCountry] = useState(countryDropDown[0].value)
     
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch(searchBillionairesByCountry(country))
-    // }, [dispatch])
+    const callDispatch= (() => dispatch(searchBillionairesByCountry(country)))
+    
+    useEffect(() => {
+        callDispatch()
+    }, [])
 
+ 
 
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault()
+    const onClick = async (e) => {
+        // e.preventDefault()
         
-    //     if(country === ''){
-    //         toast.error("Please, Select a Country")
-    //     } else {
-    //         dispatch(setStateCountry(country))
-    //         dispatch(searchBillionairesByCountry(country))
-    //     }
-    // }
+        if(country === ''){
+            toast.error("Please, Select a Country")
+        } else {
+            // dispatch(setCountry(country))
+            dispatch(searchBillionairesByCountry(country))
+        }
+    }
 
-    // const handleChangeCountry = (value) => {
-    //     setCountry(value.value)
-    // }
+    const handleChangeCountry = (value) => {
+        setCountry(value.value)
+    }
 
     return (
-        <form 
-            // onSubmit={handleSubmit}
-        >
             <div className='flex'>
                 <div className="w-full">
                     <Select 
@@ -42,20 +44,19 @@ export default function Search() {
                               state.isFocused ? 'border-red-600' : 'border-grey-300',
                           }}
                         options={countryDropDown}
-                        // onChange={handleChangeCountry}
+                        onChange={handleChangeCountry}
                         placeholder="United States"
-                        instanceId={"whatupbra"}
+                        instanceId={"anythingCanGoHereClearsPropsIdError"}
                     />
                 </div>
                 <div>
                     <Button
                         variant="searchLightGray"
-
+                        onClick={onClick}
                     >
                         Search
                     </Button>
                 </div>         
             </div>
-        </form>
       )
 }

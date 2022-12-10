@@ -22,17 +22,6 @@ export default function Login () {
 
     const {user, isLoading, isSuccess, isError, message} = useSelector(state => state.auth)
 
-    // useEffect(() => {
-    //     if(isError) {
-    //         toast.error(message) 
-    //     }
-
-    //     if(isSuccess || user){
-    //         // router.push('/')
-    //     }
-
-    //     dispatch(reset())
-    // }, [user, isLoading, isError, isSuccess, message, router, dispatch])
 
     const onChange = (e) => {
         setFormData((prevState) => ({
