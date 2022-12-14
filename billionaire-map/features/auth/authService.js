@@ -1,7 +1,7 @@
 // Exists to make requests to our backend API
 import axios from 'axios'
 
- 
+   
 // Endpoint for all Auth
 const API_URL = '/api/users'
  

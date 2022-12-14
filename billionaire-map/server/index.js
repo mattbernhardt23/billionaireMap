@@ -19,7 +19,8 @@ app
 
         server.use(express.json())
         server.use(express.urlencoded({extended: false}))
-        server.use('/api/billionaires', require('./routes/billionaireRoutes') )
+        server.use('/api/billionaires', require('./routes/billionaireRoutes') )       
+        server.use('/api/billionaires/:id/comments', require('./routes/commentRoutes') )       
         server.use('/api/users', require('./routes/userRoutes') )
         server.use(errorHandler)
         

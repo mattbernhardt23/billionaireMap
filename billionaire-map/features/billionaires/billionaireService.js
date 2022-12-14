@@ -25,10 +25,48 @@ const getBillionaire = (billionaire) => {
     return billionaire
 }
 
+const COMMENT_URL ='/api/billionaires/:id/comments'
+
+const createComment = async (comment) => {
+    const options = {
+        params: {
+            billionaire: comment.billionaire,
+            comment: {
+                body: comment.body,
+                name: comment.user.name,
+                author: comment.user
+            }
+        }
+    }
+    
+    const response = await axios.post(COMMENT_URL, options)
+
+
+    return response.data
+}
+
+
+const deleteComment = async (commentData) => {
+    const URL = COMMENT_URL + '/' + commentData.commentId
+    
+    const options = {
+        params: {
+            commentId: commentData.commentId,
+            id: commentData.id,
+        }
+    }
+    
+    const response = await axios.delete(URL, options)
+
+    return response.data
+} 
+
 const billionaireService = {
     getBillionaires,
     setCountry,
-    getBillionaire
+    getBillionaire,
+    createComment,
+    deleteComment
 }
 
 export default billionaireService

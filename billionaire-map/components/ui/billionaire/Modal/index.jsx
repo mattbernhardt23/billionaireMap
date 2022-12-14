@@ -1,15 +1,64 @@
 import { Modal, Button } from "@components/ui/common"
-import { useSelector } from "react-redux"
+import { CommentList, CommentCard } from "@components/ui/comments"
+import { useSelector, useDispatch } from "react-redux"
+import { createComment } from "@features/billionaires/billionaireSlice"
+import { useState } from "react"
+import { toast } from "react-toastify";
 import Image from "next/image"
+
 
 
 
 export default function BillionaireModal({modalIsOpen, onClose}) {
   const { billionaire } = useSelector((state) => state.billionaireData)
+  const { user } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const defaultState = {
+    body: "",
+    user,
+    billionaire
+  }
+  
+  const [commentData, setCommentData] = useState(defaultState)
+  const { body } = commentData
+
+  
+  const onChange = (e) => {
+    setCommentData((prevState) => ({
+        ...prevState,
+    [e.target.name]: e.target.value,
+    }))
+  }
+
+  const onClick =(e) => {
+    e.preventDefault()
+
+    const commentData = {
+        body,
+        user,
+        billionaire
+    }
+
+    if(body === '') {
+      return toast.error("Cannot Submit Empty Comment")
+    } else if (user === null) {
+      return toast.error("Must Be Logged In to Submit Comment")
+    }
+    
+    dispatch(createComment(commentData))
+    .unwrap()
+    .then(() => {
+      toast.success("Comment Posted")
+    })
+    setCommentData(defaultState)
+}
 
   const closeModal = () => {
       onClose()
   }
+
+  const commentState = createComment(commentData)
+
 
 if(modalIsOpen && billionaire != null){
 
@@ -18,7 +67,7 @@ if(modalIsOpen && billionaire != null){
 return (
       <>
         <Modal modalIsOpen={modalIsOpen}>
-          <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-auto shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-4/5">
+          <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-auto shadow-xl transform transition-all sm:my-2 sm:align-middle sm:w-4/5">
             <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 sm:mt-0 sm:ml-4 sm:text-left">
@@ -82,9 +131,9 @@ return (
                             Bio
                           </div>
                           <div className="mt-2 shadow-md border rounded-md border-red-100">
-                            <div className="overflow-y-auto h-32 text-md leading-6 text-red-800">
-                              {billionaire.bios.map((item) => 
-                                <p>- {item}</p>
+                            <div className="overflow-y-auto h-32 text-md leading-6 text-red-800 m-1">
+                              {billionaire.bios.map((item, i) => 
+                                <p key={billionaire.bios[i]}>- {item}</p>
                               )}
                             </div>
                           </div>
@@ -95,10 +144,10 @@ return (
                     <div className="flex flex-row w-full relative">
                         <input 
                           type="text"
-                          // id='email'
-                          // value={email}
-                          // name='email'
-                          // onChange={onChange}
+                          id='body'
+                          value={body}
+                          name='body'
+                          onChange={onChange}
                           placeholder="Enter Your Comment"
                           required
                           className="
@@ -109,14 +158,26 @@ return (
                           w-full"    
                         />
                         <Button
+                          disabled={commentState.isDisabled}
                           className=" absolute-right"
                           variant="lightGray"
+                          onClick={onClick}
                         >
                           Submit
                         </Button>
                     </div>
-                    <div className="flex"> Posted Comments Container
-
+                    <div className="flex"> 
+                    <CommentList
+                      comments={billionaire.comments}
+                    >
+                    {comment => {
+                      return (
+                        <CommentCard
+                          key={comment._id}    
+                          comment={comment}
+                      />
+                    )}}
+                    </CommentList>
                     </div>
                   </div>
                 </div>

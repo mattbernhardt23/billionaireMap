@@ -10,6 +10,6 @@ import billionaireReducer from '@features/billionaires/billionaireSlice';
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    billionaireData: billionaireReducer
+    billionaireData: billionaireReducer,
   },
 }, applyMiddleware(thunkMiddleware));

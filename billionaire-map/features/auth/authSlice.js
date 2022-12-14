@@ -2,11 +2,6 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import { useEffect } from 'react';
 import authService from './authService'
 
-
-
-
- 
-
 const initialState = {
     user: null,
     isError: false,

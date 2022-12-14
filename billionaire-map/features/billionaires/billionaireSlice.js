@@ -12,7 +12,7 @@ export const setStateCountry = createAsyncThunk('country/set', async (place, thu
   }
   
 })
-
+ 
 export const searchBillionairesByCountry = createAsyncThunk('billionaires/fetch',
 async (country, thunkAPI) => {
   try {
@@ -29,6 +29,32 @@ export const getBillionaire = createAsyncThunk("billionaire/set", async (billion
     return thunkAPI.rejectWithValue(extractErrorMessage(e))
   }
 }) 
+
+export const createComment = createAsyncThunk('comment/create', async (comment, thunkAPI) => {
+  try {
+    console.log("we're in the thunk")
+      return await billionaireService.createComment(comment)
+  } catch (error) {
+      const message = (error.response && error.response.data && error.response.data.message) 
+      || error.message 
+      || error.toString()
+
+      return thunkAPI.rejectWithValue(message)
+  }
+})
+ 
+export const deleteComment = createAsyncThunk('comment/delete', async (comment, thunkAPI) => {
+  try {
+      return await billionaireService.deleteComment(comment)
+  } catch (error) {
+      const message = (error.response && error.response.data && error.response.data.message) 
+      || error.message 
+      || error.toString()
+
+      return thunkAPI.rejectWithValue(message)
+  }
+})
+
 
 const initialState = {
   country: {
@@ -84,6 +110,28 @@ const billionaireDataSlice = createSlice({
         state.isLoading = true
       })
       .addCase(getBillionaire.rejected, (state, action) => {
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(createComment.fulfilled, (state, action) => {
+        state.message = action.payload
+        state.isLoading = false
+      })
+      .addCase(createComment.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(createComment.rejected, (state, action) => {
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(deleteComment.fulfilled, (state, action) => {
+        state.message = action.payload
+        state.isLoading = false
+      })
+      .addCase(deleteComment.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(deleteComment.rejected, (state, action) => {
         state.isError = true
         state.message = action.payload
       })

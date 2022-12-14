@@ -30,7 +30,7 @@ export default function Home() {
               />
             )}}
           </BillionaireList>
-          <BillionaireModal 
+          <BillionaireModal     
             modalIsOpen={modalIsOpen}
             onClose={() => {
               dispatch(getBillionaire(null))

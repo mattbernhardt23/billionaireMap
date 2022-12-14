@@ -7,7 +7,6 @@ export default function Card({onClick, billionaire}) {
     const dispatch = useDispatch()
 
     const handleClick = () => { 
-        console.log("in the card")
         dispatch(getBillionaire(billionaire))
     }
   

@@ -20,7 +20,7 @@ export default function Login () {
     const dispatch = useDispatch()
     const router = useRouter()
 
-    const {user, isLoading, isSuccess, isError, message} = useSelector(state => state.auth)
+    const {isLoading, message} = useSelector(state => state.auth)
 
 
     const onChange = (e) => {
@@ -40,11 +40,11 @@ export default function Login () {
         
         dispatch(login(userData))
         .unwrap()
-        .then((user) => {
+        .then(() => {
           // NOTE: by unwrapping the AsyncThunkAction we can navigate the user after
           // getting a good response from our API or catch the AsyncThunkAction
           // rejection to show an error message
-          toast.success(`Logged in as ${user.name}`)
+        //   toast.success(`Logged in as ${user.name}`)
           router.push('/')
         })
         .catch(toast.error)
