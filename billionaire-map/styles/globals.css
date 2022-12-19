@@ -6,6 +6,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
 .fit {
   min-height: calc(100vh - 88px);
 }

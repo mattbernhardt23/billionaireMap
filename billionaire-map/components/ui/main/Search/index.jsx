@@ -1,32 +1,39 @@
 import { Button } from '@components/ui/common'
+import { countryCoordinates } from "@utils/countryCoordinates"
 import { countryDropDown } from "@utils/countryDropDown"
 import { useDispatch, useSelector } from 'react-redux'
-import { searchBillionairesByCountry } from '@features/billionaires/billionaireSlice'
-import { useState, useEffect } from 'react'
+import { searchBillionairesByCountry, setViewState } from '@features/billionaires/billionaireSlice'
+import { useState, useEffect, useCallback } from 'react'
 import Select from 'react-select'
 
 
 export default function Search() {
+    const { viewState } = useSelector((state) => state.billionaireData)
     const [country, setCountry] = useState(countryDropDown[0].value)
     
     const dispatch = useDispatch()
 
-    const callDispatch= (() => dispatch(searchBillionairesByCountry(country)))
+    // Created a function to call the dispatch becasue dispatching from inside a useEffect is not permitted. 
+    const callBillionaireDispatch= (() => dispatch(searchBillionairesByCountry(country)))
     
+
     useEffect(() => {
-        callDispatch()
+        callBillionaireDispatch()
     }, [])
 
- 
 
     const onClick = async (e) => {
-        // e.preventDefault()
-        
+        const result = countryCoordinates.find(element => element.country === country)
+        const viewport = {
+            latitude: result.lat,
+            longitude: result.lng,
+            zoom: result.zoom,
+        }
         if(country === ''){
             toast.error("Please, Select a Country")
         } else {
-            // dispatch(setCountry(country))
             dispatch(searchBillionairesByCountry(country))
+            dispatch(setViewState(viewport))
         }
     }
 

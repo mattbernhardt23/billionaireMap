@@ -1,7 +1,7 @@
 import {useState, useEffect, useCallback} from 'react'
 import { useSelector } from 'react-redux';
 import ReactMapGl, { Marker, NavigationControl, Source, Layer } from 'react-map-gl'
-import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from './mapComponents/layers';
+import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from '../../utils/layers';
 import mapboxgl from 'mapbox-gl'
 import Spinner from './Spinner';
 import Svg from './Svg'
