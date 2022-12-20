@@ -7,7 +7,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Select from 'react-select'
 
 
-export default function Search() {
+export default function Search({setInitialView}) {
     const { viewState } = useSelector((state) => state.billionaireData)
     const [country, setCountry] = useState(countryDropDown[0].value)
     
@@ -33,7 +33,7 @@ export default function Search() {
             toast.error("Please, Select a Country")
         } else {
             dispatch(searchBillionairesByCountry(country))
-            dispatch(setViewState(viewport))
+            setInitialView(viewport)
         }
     }
 

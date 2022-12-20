@@ -1,29 +1,25 @@
 import Map from 'react-map-gl'
 import mapboxgl from 'mapbox-gl'
-import { Marker, NavigationControl, Source, Layer, Popup } from 'react-map-gl'
+import { Marker, NavigationControl, Source, Layer } from 'react-map-gl'
 import { Loader } from '@components/ui/common'
 import { ToggleButtons, SVG } from '@components/ui/main'
-import { useCallback, useState, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { setViewState } from '@features/billionaires/billionaireSlice'
 import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from "@utils/layers"
+import { CustomPopup } from '@components/ui/main'
 
 
-export default function MapHome() {
-  const { billionaires, viewState, isLoading } = useSelector((state) => state.billionaireData)
+
+export default function MapHome({initialView, onClick}) {
+  const { billionaires, isLoading } = useSelector((state) => state.billionaireData)
   const dispatch = useDispatch()
 
   const [mapView, setMapView] = useState('pins')
   const [popupInfo, setPopupInfo] = useState(null)
 
   
-  
   mapboxgl.accessToken = 'pk.eyJ1IjoibWF0dGhld2Jlcm5oYXJkdCIsImEiOiJjbDYzejZpaGYwaGg1M2tsdmViOW05Zmw1In0.ILKwMbc0ahbTlF9HvQeGyQ'
 
-
-  const moveMap = useCallback(evt => {
-    dispatch(setViewState(evt.viewState))
-  }, [viewState])
 
   // Clusters or Pins
 const handleMapView = (value) => {
@@ -56,13 +52,15 @@ let clusterGeoData = {};
         longitude={billionaire.geoLocation.lng} 
         anchor='bottom'
         key={billionaire._id}
+        onMouseEnter={(e) => {
+          e.originalEvent.stopPropagation();
+          setPopupInfo(billionaire)}}
+        onMouseLeave={() => setPopupInfo(null)}
         onClick={e => {
             // If we let the click event propagates to the map, it will immediately close the popup
             // with `closeOnClick: true`
             e.originalEvent.stopPropagation();
             setPopupInfo(billionaire);
-            console.log("popup info", popupInfo)
-            console.log("billionaire", billionaire)
         }}
       >
         <SVG />
@@ -78,39 +76,29 @@ let clusterGeoData = {};
       </div>
     )
   }
+
+  
   return (
     <>
       <main className="flex flex-1 flex-col justify-center items-center p-5">
         <Map
-          latitude={viewState.latitude}
-          longitude={viewState.longitude}
-          zoom={viewState.zoom}
+          initialViewState={{
+            latitude: initialView.latitude,
+            longitude: initialView.longitude,
+            zoom: initialView.zoom
+          }}
           doubleClickZoom={true}
           style={{width: 750, height: 500}}
           mapStyle="mapbox://styles/mapbox/streets-v12"
-          onMove={moveMap}
         >
           {mapView === 'pins' &&  pins}
           {popupInfo && (
-          <dir className="p-1">
-          <Popup
-            className='border-2 border-gray-900 rounded-md flex flex-col'
-            anchor="top"
-            longitude={Number(popupInfo.geoLocation.lng)}
-            latitude={Number(popupInfo.geoLocation.lat)}
-            onClose={() => setPopupInfo(null)}
-          >
-            <div className='border-2 border-gray-900 rounded-md flex flex-col p-3'>
-              <div>
-                {popupInfo.person.name}
-              </div>
-              <div>
-                {`$${popupInfo.finalWorth/1000} B`} 
-              </div> 
-            </div>
-          </Popup>
-          </dir>  
-        )}
+            <CustomPopup 
+              popupInfo={popupInfo}
+              onClose={() => setPopupInfo(null)}
+              onClick={() => onClick(popupInfo)} 
+            /> 
+          )}
           {mapView === 'clusters' &&
             <Source
               id="earthquakes"
@@ -133,8 +121,6 @@ let clusterGeoData = {};
           </div>
         </Map>
       </main>
-    </>
-    
+    </> 
   )
-     
 }

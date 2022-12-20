@@ -21,7 +21,7 @@ export default function Card({onClick, billionaire}) {
             </div>
             <div className="col-span-5" > 
                 <div 
-                    onClick={onClick}
+                    onClick={() => onClick(billionaire)}
                     className="flex justify-center text-sm sm:text-base leading-tight font-medium hover:underline hover:cursor-pointer" 
                 >
                     {billionaire.person.name.substring(0, 22)}       

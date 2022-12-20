@@ -15,11 +15,6 @@ const getBillionaires = async (country) => {
   return response.data.billionaires;
 };
 
-// Set Country
-const setViewState = (viewport) => {
-  return viewport;
-};
-
 const getBillionaire = (billionaire) => {
   return billionaire;
 };
@@ -60,7 +55,6 @@ const deleteComment = async (commentData) => {
 
 const billionaireService = {
   getBillionaires,
-  setViewState,
   getBillionaire,
   createComment,
   deleteComment,

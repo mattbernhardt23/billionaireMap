@@ -3,17 +3,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import billionaireService from "./billionaireService";
 import { extractErrorMessage } from "@utils/extractErrorMessage";
 
-export const setViewState = createAsyncThunk(
-  "country/set",
-  async (viewport, thunkAPI) => {
-    try {
-      return billionaireService.setViewState(viewport);
-    } catch (e) {
-      return thunkAPI.rejectWithValue(extractErrorMessage(e));
-    }
-  }
-);
-
 export const searchBillionairesByCountry = createAsyncThunk(
   "billionaires/fetch",
   async (country, thunkAPI) => {
@@ -73,11 +62,6 @@ export const deleteComment = createAsyncThunk(
 );
 
 const initialState = {
-  viewState: {
-    latitude: 37.09024,
-    longitude: -95.712891,
-    zoom: 3,
-  },
   billionaire: null,
   billionaires: [],
   isLoading: false,
@@ -101,17 +85,6 @@ const billionaireDataSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(searchBillionairesByCountry.rejected, (state, action) => {
-        state.isError = true;
-        state.message = action.payload;
-      })
-      .addCase(setViewState.fulfilled, (state, action) => {
-        state.viewState = action.payload;
-        state.isLoading = false;
-      })
-      .addCase(setViewState.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(setViewState.rejected, (state, action) => {
         state.isError = true;
         state.message = action.payload;
       })

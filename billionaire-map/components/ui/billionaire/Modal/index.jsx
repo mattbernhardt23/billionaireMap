@@ -114,7 +114,7 @@ return (
                             {billionaire.person.name}
                           </h3>
                       </div>
-                      <div className="flex flex-row justify-between pr-12"> 
+                      <div className="flex flex-row justify-between"> 
                           <div>
                             <span className="text-xl font-bold leading-6 text-red-800">Net Worth - </span>
                             <span className="text-xl font-bold leading-6 text-red-800">{`$${netWorth} Billion`}</span>
@@ -123,12 +123,15 @@ return (
                             {`Age - ${billionaire.age}`}
                           </div>
                       </div>
-                      <div className="text-lg font-bold leading-6 text-red-800"> 
-                          {`${billionaire.category.toUpperCase()} - ${billionaire.source.toUpperCase()}`}
+                      <div className="text-lg tracking-wider font-bold leading-6 text-red-800 flex flex-row justify-between"> 
+                        <div>{billionaire.category.toUpperCase()}</div>
+                        <div>-</div>
+                        <div>{billionaire.source.toUpperCase()}</div>
                       </div>
                       <div className="flex flex-col"> 
-                          <div className="text-lg font-bold leading-6 text-red-800">
-                            Bio
+                          <div className="flex flex-row  justify-between text-lg font-bold leading-6 text-red-800">
+                            <div>Bio</div>
+                            <div>{`${billionaire.city}, ${billionaire.country}`}</div>
                           </div>
                           <div className="mt-2 shadow-md border rounded-md border-red-100">
                             <div className="overflow-y-auto h-32 text-md leading-6 text-red-800 m-1">
