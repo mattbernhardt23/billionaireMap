@@ -1,8 +1,18 @@
 import ReactMapGL, { Popup } from 'react-map-gl';
+import { PopupModal } from '@components/ui/main';
+import { useState } from 'react';
 import Image from "next/image"
 
-export default function CustomPopup({popupInfo, onClick, onClose}){
+
+export default function CustomPopup({popupInfo, onClose}){
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+  
+  const onClick = (popupInfo) => {
+    setModalIsOpen(true)
+  }
+
   return (
+    <>
     <Popup
         className='flex flex-col'
         anchor="top"
@@ -17,6 +27,8 @@ export default function CustomPopup({popupInfo, onClick, onClose}){
           <Image
             className="rounded-md shadow-md"
             src={popupInfo.squareImage.startsWith("https") 
+                ? popupInfo.squareImage 
+                : popupInfo.squareImage.startsWith("http")
                 ? popupInfo.squareImage 
                 :`https://${popupInfo.squareImage}`
               }
@@ -47,4 +59,12 @@ export default function CustomPopup({popupInfo, onClick, onClose}){
             {popupInfo.source.toUpperCase()}
         </div> 
     </Popup>
+    <PopupModal     
+      modalIsOpen={modalIsOpen}
+      billionaire={popupInfo}
+      onClose={() => {
+        setModalIsOpen(false)
+      }}
+  />
+  </>
   )}

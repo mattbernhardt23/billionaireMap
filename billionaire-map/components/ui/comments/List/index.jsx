@@ -5,7 +5,7 @@ export default function List({comments, children}) {
      
     return (
         <>
-      <div className={`w-full mt-4 border-2 h-200 rounded-md border-gray-500`}>
+      <div className={`w-full mt-4 border-2 h-200 rounded-md border-gray-600`}>
         <div>
           <CommentHeader />
         </div>

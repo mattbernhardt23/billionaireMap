@@ -42,6 +42,7 @@ export const countryDropDown = [
   { value: "Kazakhstan", label: "Kazakhstan" },
   { value: "United Arab Emirates", label: "UAE" },
   { value: "Nigeria", label: "Nigeria" },
+  { value: "Qatar", label: "Qatar" },
   { value: "Columbia", label: "Columbia" },
   { value: "Greece", label: "Greece" },
   { value: "Cyprus", label: "Cyprus" },

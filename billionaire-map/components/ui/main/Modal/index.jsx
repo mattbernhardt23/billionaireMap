@@ -9,8 +9,7 @@ import Image from "next/image"
 
 
 
-export default function BillionaireModal({modalIsOpen, onClose}) {
-  const { billionaire } = useSelector((state) => state.billionaireData)
+export default function PopupModal({modalIsOpen, onClose, billionaire}) {
   const { user } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const defaultState = {
@@ -124,7 +123,7 @@ return (
                             {`Age - ${billionaire.age}`}
                           </div>
                       </div>
-                      <div className="text-lg tracking-wider font-bold leading-6 text-red-800 flex flex-row justify-between"> 
+                      <div className="text-lg tracking-wide font-bold leading-6 text-red-800 flex flex-row justify-between"> 
                         <div>{billionaire.category.toUpperCase()}</div>
                         <div>-</div>
                         <div>{billionaire.source.toUpperCase()}</div>
@@ -132,7 +131,7 @@ return (
                       <div className="flex flex-col"> 
                           <div className="flex flex-row  justify-between text-lg font-bold leading-6 text-red-800">
                             <div>Bio</div>
-                            <div>{`${billionaire.city}, ${billionaire.country}`}</div>
+                            <div>{`${billionaire.city}, ${billionaire.state || billionaire.country}`}</div>
                           </div>
                           <div className="mt-2 shadow-md border rounded-md border-red-100">
                             <div className="overflow-y-auto h-32 text-md leading-6 text-red-800 m-1">
@@ -194,16 +193,3 @@ return (
     )
   }
 }
-
-
-{/* <h3 className="mb-7 text-lg font-bold leading-6 text-gray-900" id="modal-title">
-                      {billionaire.person.name}
-                  </h3>
-                  <Button
-                    variant="red"
-                    onClick={() => {
-                      closeModal()
-                    }}  
-                  >
-                    Back to Results
-                  </Button> */}

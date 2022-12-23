@@ -6,7 +6,7 @@ export default function ResultsHeader() {
     
     return (
         <>
-        <div className="grid grid-cols-12 bg-gray-100 text-gray-800" >
+        <div className="grid grid-cols-12 bg-gray-600 text-white" >
             <div className="col-span-2" >
                 <div className="flex justify-center" >
                     Net Worth

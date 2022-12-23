@@ -13,7 +13,7 @@ export default function Home() {
     zoom: 3
   })
   const dispatch = useDispatch()
-  const { billionaires, billionaire } = useSelector((state) => state.billionaireData)
+  const { billionaires } = useSelector((state) => state.billionaireData)
 
   const onClick = (billionaire) => {
     dispatch(getBillionaire(billionaire))
@@ -23,8 +23,8 @@ export default function Home() {
 
   return (
     <div className='flex flex-col'>
-    <div className='flex flex-row'>
-        <div className="w-2/3 pr-1 pt-2">
+    <div className='flex flex-row pt-2 content-between'>
+        <div className="w-2/3 pr-1">
           <Search 
             setInitialView={setInitialView}
           />
@@ -50,7 +50,9 @@ export default function Home() {
           
         </div>
         <div className="w-1/3">
-          <Stats />
+          <Stats 
+            billionaires={billionaires}
+          />
         </div>
     </div>
         <Map 

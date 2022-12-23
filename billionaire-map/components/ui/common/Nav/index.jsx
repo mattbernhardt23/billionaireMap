@@ -12,7 +12,7 @@ export default function Navbar() {
       <section>
         <div className="relative py-2">
           <nav className="relative"  aria-label="Global">
-            <div className="flex flex-row justify-between sticky w-full border-b-4 border-gray-500 ">
+            <div className="flex flex-row justify-between sticky w-full border-b-4 border-gray-600 ">
               <div className="flex flex-row items-center">
                 <Link href='/' legacyBehavior>
                   <a>

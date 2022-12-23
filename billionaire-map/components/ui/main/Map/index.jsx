@@ -10,7 +10,7 @@ import { CustomPopup } from '@components/ui/main'
 
 
 
-export default function MapHome({initialView, onClick}) {
+export default function MapHome({initialView}) {
   const { billionaires, isLoading } = useSelector((state) => state.billionaireData)
   const dispatch = useDispatch()
 
@@ -18,8 +18,9 @@ export default function MapHome({initialView, onClick}) {
   const [popupInfo, setPopupInfo] = useState(null)
 
   
-  mapboxgl.accessToken = 'pk.eyJ1IjoibWF0dGhld2Jlcm5oYXJkdCIsImEiOiJjbDYzejZpaGYwaGg1M2tsdmViOW05Zmw1In0.ILKwMbc0ahbTlF9HvQeGyQ'
-
+  // mapboxgl.accessToken = 'pk.eyJ1IjoibWF0dGhld2Jlcm5oYXJkdCIsImEiOiJjbDYzejZpaGYwaGg1M2tsdmViOW05Zmw1In0.ILKwMbc0ahbTlF9HvQeGyQ'
+  
+  mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAP_TOKEN
 
   // Clusters or Pins
 const handleMapView = (value) => {
@@ -46,7 +47,7 @@ let clusterGeoData = {};
 
   const pins = useMemo(
     () => 
-    billionaires.map((billionaire, index) => (
+    billionaires.map((billionaire) => (
       <Marker
         latitude={billionaire.geoLocation.lat} 
         longitude={billionaire.geoLocation.lng} 
@@ -67,7 +68,6 @@ let clusterGeoData = {};
       </Marker>
     ))
     )
-
 
   if(isLoading) {
     return (

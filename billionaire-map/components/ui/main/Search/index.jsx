@@ -8,7 +8,6 @@ import Select from 'react-select'
 
 
 export default function Search({setInitialView}) {
-    const { viewState } = useSelector((state) => state.billionaireData)
     const [country, setCountry] = useState(countryDropDown[0].value)
     
     const dispatch = useDispatch()
@@ -45,7 +44,7 @@ export default function Search({setInitialView}) {
             <div className='flex'>
                 <div className="w-full">
                     <Select 
-                        className=" border-gray-500 border-2 border-b-4 border-r-0 rounded-l-md shadow-inner shadow-gray-500"
+                        className=" border-gray-600 border-2 border-b-4 border-r-0 rounded-l-md shadow-inner shadow-gray-600"
                         classNames={{
                             control: (state) =>
                               state.isFocused ? 'border-red-600' : 'border-grey-300',

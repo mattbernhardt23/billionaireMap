@@ -6,8 +6,7 @@ import { toast } from "react-toastify";
 
 
 
-export default function Card({comment}) {
-    const { billionaire } = useSelector((state) => state.billionaireData)
+export default function Card({billionaire, comment}) {
     const { user } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
 
@@ -23,7 +22,7 @@ export default function Card({comment}) {
         dispatch(deleteComment(commentData))
         .unwrap()
         .then(() => {
-            toast.success("Comment Deleted, Please Refresh")
+            toast.success("Comment Deleted")
         })
     }
 
@@ -54,29 +53,3 @@ export default function Card({comment}) {
   )
       
 }
-
-// <>
-//         <div className="flex flex-col text-red-900" >
-//             <div className="col-span-2" >
-//                 <div className="flex " >
-//                     {comment.name}
-//                 </div>
-//             </div>
-//             <div className="col-span-5" > 
-//                 <div 
-                    
-//                     className="flex text-sm sm:text-base leading-tight font-medium"
-//                 >    
-//                     {comment.body}
-//                 </div>
-//             </div>
-//             <div>
-//                 <Button
-//                     variant="red"
-//                     onClick={handleClick}
-//                 >
-//                     Delete
-//                 </Button>
-//             </div>
-//         </div>
-//       </> 

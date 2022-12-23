@@ -1,11 +1,12 @@
 import { Navbar, Footer } from "@components/ui/common"
+
 import Head from "next/head";
 
 export default function BaseLayout({children}) {
   return (
-    
+     
     <>
-        <Head>
+      <Head>
           <title>Billionaire Map</title>
           <link rel="icon" href="/favicon.ico" />
           <link
@@ -15,11 +16,11 @@ export default function BaseLayout({children}) {
         </Head>
         <div className="max-w-7xl mx-auto px-4">
           <Navbar />
-          <div className="fit">
-            {children}
-          </div>
+            <div className="fit">
+              {children}
+            </div>
         </div>
-      <Footer />
+        <Footer />
     </> 
   
   )

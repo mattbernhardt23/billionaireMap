@@ -20,9 +20,9 @@ export default function Button({
   const variants = {
     white: `rounded-md text-black bg-white`,
     red: `rounded-md text-white bg-red-600 ${hoverable && "hover:bg-red-700"}`,
-    gray: `rounded-md text-white bg-gray-500 ${hoverable && "hover:bg-red-700"}`,
+    gray: `rounded-md text-white bg-gray-600 ${hoverable && "hover:bg-red-700"}`,
     lightGray: `rounded-md text-red-700 bg-gray-100 border-gray-500 border-2 ${hoverable && "hover:bg-gray-500"}`,
-    searchLightGray: `rounded-r-md text-red-700 bg-gray-100 border-gray-500 border-2 hadow-inner shadow-gray-500 ${hoverable && "hover:bg-gray-500"}`,
+    searchLightGray: `rounded-r-md text-red-700 bg-gray-100 border-gray-600 border-2 hadow-inner shadow-gray-600 ${hoverable && "hover:bg-gray-500"}`,
     delete: `rounded-xl text-red-700 bg-white border-red-700 border-2 ${hoverable && "hover:bg-red-700 hover:text-white"}`,
 
   }
