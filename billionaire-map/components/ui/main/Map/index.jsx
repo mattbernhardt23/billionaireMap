@@ -14,7 +14,7 @@ export default function MapHome({initialView}) {
   const { billionaires, isLoading } = useSelector((state) => state.billionaireData)
   const dispatch = useDispatch()
 
-  const [mapView, setMapView] = useState('pins')
+  const [mapView, setMapView] = useState('clusters')
   const [popupInfo, setPopupInfo] = useState(null)
 
   

@@ -1,6 +1,5 @@
 import { Navbar, Footer } from "@components/ui/common"
-
-import Head from "next/head";
+import Head from 'next/head'
 
 export default function BaseLayout({children}) {
   return (
@@ -11,7 +10,7 @@ export default function BaseLayout({children}) {
           <link rel="icon" href="/favicon.ico" />
           <link
             href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
-            rel="stylesheet"
+            rel="preconnect"
           />
         </Head>
         <div className="max-w-7xl mx-auto px-4">

@@ -132,7 +132,7 @@ return (
                       <div className="flex flex-col"> 
                           <div className="flex flex-row  justify-between text-lg font-bold leading-6 text-red-800">
                             <div>Bio</div>
-                            <div>{`${billionaire.city}, ${billionaire.country}`}</div>
+                            <div>{`${billionaire.city}, ${billionaire.state || billionaire.country}`}</div>
                           </div>
                           <div className="mt-2 shadow-md border rounded-md border-red-100">
                             <div className="overflow-y-auto h-32 text-md leading-6 text-red-800 m-1">

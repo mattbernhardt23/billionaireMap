@@ -1,5 +1,5 @@
 const axios = require("axios");
-const dotenv = require("dotenv").config();
+// const dotenv = require("dotenv").config();
 const countryData = require("../data/countryData");
 
 async function getBillionairesByCountry(country) {

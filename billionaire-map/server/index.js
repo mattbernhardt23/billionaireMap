@@ -1,41 +1,38 @@
-const express = require('express')
-const next = require('next')
-const dotenv = require('dotenv').config()
-const {errorHandler} = require('./middleware/errorMiddleware')
-const connectDB = require('./config/db')
-const PORT = process.env.PORT || 3000
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
-const handle = app.getRequestHandler()
-const { getBillionaires } = require("./controllers/billionaireController")
- 
+const express = require("express");
+const next = require("next");
+const dotenv = require("dotenv").config();
+const { errorHandler } = require("./middleware/errorMiddleware");
+const connectDB = require("./config/db");
+const PORT = process.env.PORT || 3000;
+const dev = process.env.NODE_ENV !== "production";
+const app = next({ dev });
+const handle = app.getRequestHandler();
+
 app
-    .prepare()
-    .then(() => {
-        // Connect to Database
-        connectDB()
-        
-        const server = express()
+  .prepare()
+  .then(() => {
+    // Connect to Database
+    connectDB();
 
-        server.use(express.json())
-        server.use(express.urlencoded({extended: false}))
-        server.use('/api/billionaires', require('./routes/billionaireRoutes') )       
-        server.use('/api/billionaires/:id/comments', require('./routes/commentRoutes') )       
-        server.use('/api/users', require('./routes/userRoutes') )
-        server.use(errorHandler)
-        
-        server.get('*', (req, res) => {
-            return handle(req, res)
-        })
+    const server = express();
 
-        server.listen(PORT, () => console.log(`Server listening on ${PORT}`))       
-    })
-    .catch(ex => {
-        console.error(ex.stack);
-        process.exit(1)
-    })
+    server.use(express.json());
+    server.use(express.urlencoded({ extended: false }));
+    server.use("/api/billionaires", require("./routes/billionaireRoutes"));
+    server.use(
+      "/api/billionaires/:id/comments",
+      require("./routes/commentRoutes")
+    );
+    server.use("/api/users", require("./routes/userRoutes"));
+    server.use(errorHandler);
 
+    server.get("*", (req, res) => {
+      return handle(req, res);
+    });
 
-
-
-
+    server.listen(PORT, () => console.log(`Server listening on ${PORT}`));
+  })
+  .catch((ex) => {
+    console.error(ex.stack);
+    process.exit(1);
+  });
